@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: web-ctf
+  namespace: ctf-lab
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: web-ctf
+  template:
+    metadata:
+      labels:
+        app: web-ctf
+    spec:
+      containers:
+      - name: web-ctf
+        image: your-dockerhub-username/ctf-web:latest
+        ports:
+        - containerPort: 5000
+        envFrom:
+        - configMapRef:
+            name: ctf-config
