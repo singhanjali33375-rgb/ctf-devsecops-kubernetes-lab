@@ -1,0 +1,17 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: ctf-ingress
+  namespace: ctf-lab
+spec:
+  rules:
+  - host: ctf.local
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: web-ctf-service
+            port:
+              number: 80
